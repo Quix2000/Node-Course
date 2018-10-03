@@ -4,6 +4,8 @@ var fs = require('fs');
 
 var app = express();
 
+var port = process.env.PORT || 3000;
+
 hbs.registerPartials(__dirname + '/views/partials/');
 
 app.set('view engine', 'hbs');
@@ -20,9 +22,9 @@ app.use((request, response, next) => {
     next();
 })
 
-app.use((request, response, next) => {
-    response.render('maintenance.hbs');
-})
+//app.use((request, response, next) => {
+//    response.render('maintenance.hbs');
+//})
 
 app.use(express.static(__dirname + '/public'));
 
@@ -55,6 +57,6 @@ app.get('/bad',(request, response) => {
     response.send('Unable to process request');
 })
 
-app.listen(3000, () => {
-    console.log('Server is up at Port 3000');
+app.listen(port, () => {
+    console.log(`Server is up at Port ${port}`);
 });
